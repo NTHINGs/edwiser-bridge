@@ -87,6 +87,11 @@ do_action('eb_before_customer_login_form');
                     </p>
                     <?php
                 }
+                ?>
+                <p class="form-row">
+                    <?php echo do_shortcode('[nextend_social_login]'); ?>
+                </p>
+                <?php
                 do_action('eb_login_form_end');
                 ?>
             </form>
