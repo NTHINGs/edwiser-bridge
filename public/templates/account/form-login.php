@@ -17,6 +17,86 @@ do_action('eb_before_customer_login_form');
     $action              = getArrValue($_GET, "action", false);
     $username            = getArrValue($_POST, "username", false);
     if (!$action || $action != 'eb_register') {
+        ?>
+        <h2>
+            <?php
+            _e('Login', 'eb-textdomain');
+            ?>
+        </h2>
+        <div class="eb-wrap-login-form">
+            <form method="post" class="login">
+                <?php
+                do_action('eb_login_form_start');
+                ?>
+                <p class="form-row form-row-wide">
+                    <label for="wdm_username">
+                        <?php
+                        _e('Username', 'eb-textdomain');
+                        ?>
+                        <span class="required">*</span>
+                    </label>
+                    <input type="text" class="input-text" placeholder="<?php _e("Enter user name", "eb-textdomain"); ?>" name="wdm_username" id="wdm_username" value="<?php echo esc_attr($username); ?>" />
+                </p>
+                <p class="form-row form-row-wide">
+                    <label for="wdm_password">
+                        <?php _e('Password', 'eb-textdomain');
+                        ?>
+                        <span class="required">*</span>
+                    </label>
+                    <input class="input-text" type="password" placeholder="<?php _e("Enter password", "eb-textdomain"); ?>" name="wdm_password" id="wdm_password" />
+                </p>
+                <?php
+                do_action('eb_login_form');
+                ?>               
+                <p class="form-row">
+                    <?php
+                    wp_nonce_field('eb-login');
+                    ?>
+                    <label for="rememberme" class="inline">
+                        <input name="rememberme" type="checkbox" id="rememberme" value="forever" />
+                        <?php
+                        _e('Remember me', 'eb-textdomain');
+                        ?>
+                    </label>
+                </p>
+                <p>
+                    <input type="submit" class="eb-login-button button" name="wdm_login" value="<?php _e('Login', 'eb-textdomain'); ?>" />
+
+                </p>
+                <p class="lost_password form-row">
+                    <a href="<?php echo esc_url(wp_lostpassword_url()); ?>"><?php _e('Forgot password', 'eb-textdomain'); ?></a>
+                </p>
+                <?php
+                if ($enable_registration == 'yes') {
+                    $argList = '';
+                    if (!empty($_GET['redirect_to'])) {
+                        $argList = '&redirect_to=' . $_GET['redirect_to'];
+                    }
+
+                    if (isset($_GET['is_enroll']) && $_GET['is_enroll'] == 'true') {
+                        $argList .= '&is_enroll=' . $_GET['is_enroll'];
+                    }
+                    ?>
+                    <p class="register-link form-row">
+
+                        <a href='<?php echo esc_url(wdmUserAccountUrl('?action=eb_register' . $argList)); ?>'>
+                            <?php
+                            _e('Don\'t have an Account?', 'eb-textdomain');
+                            ?>
+                        </a>
+                    </p>
+                    <?php
+                }
+                do_action('eb_login_form_end');
+                ?>
+            </form>
+        </div>
+        <?php
+    }
+    ?>
+
+    <?php
+    if (isset($_GET['action']) && $_GET['action'] == 'eb_register' && $enable_registration == 'yes') {
         $fname = getArrValue($_POST, 'firstname', "");
         $lname = getArrValue($_POST, 'lasttname', "");
         $email = getArrValue($_POST, 'email', "");
@@ -133,86 +213,6 @@ do_action('eb_before_customer_login_form');
 
                 <?php
                 do_action('eb_register_form_end');
-                ?>
-            </form>
-        </div>
-        <?php
-    }
-    ?>
-
-    <?php
-    if (isset($_GET['action']) && $_GET['action'] == 'eb_register' && $enable_registration == 'yes') {
-        ?>
-        <h2>
-            <?php
-            _e('Login', 'eb-textdomain');
-            ?>
-        </h2>
-        <div class="eb-wrap-login-form">
-            <form method="post" class="login">
-                <?php
-                do_action('eb_login_form_start');
-                ?>
-                <p class="form-row form-row-wide">
-                    <label for="wdm_username">
-                        <?php
-                        _e('Username', 'eb-textdomain');
-                        ?>
-                        <span class="required">*</span>
-                    </label>
-                    <input type="text" class="input-text" placeholder="<?php _e("Enter user name", "eb-textdomain"); ?>" name="wdm_username" id="wdm_username" value="<?php echo esc_attr($username); ?>" />
-                </p>
-                <p class="form-row form-row-wide">
-                    <label for="wdm_password">
-                        <?php _e('Password', 'eb-textdomain');
-                        ?>
-                        <span class="required">*</span>
-                    </label>
-                    <input class="input-text" type="password" placeholder="<?php _e("Enter password", "eb-textdomain"); ?>" name="wdm_password" id="wdm_password" />
-                </p>
-                <?php
-                do_action('eb_login_form');
-                ?>               
-                <p class="form-row">
-                    <?php
-                    wp_nonce_field('eb-login');
-                    ?>
-                    <label for="rememberme" class="inline">
-                        <input name="rememberme" type="checkbox" id="rememberme" value="forever" />
-                        <?php
-                        _e('Remember me', 'eb-textdomain');
-                        ?>
-                    </label>
-                </p>
-                <p>
-                    <input type="submit" class="eb-login-button button" name="wdm_login" value="<?php _e('Login', 'eb-textdomain'); ?>" />
-
-                </p>
-                <p class="lost_password form-row">
-                    <a href="<?php echo esc_url(wp_lostpassword_url()); ?>"><?php _e('Forgot password', 'eb-textdomain'); ?></a>
-                </p>
-                <?php
-                if ($enable_registration == 'yes') {
-                    $argList = '';
-                    if (!empty($_GET['redirect_to'])) {
-                        $argList = '&redirect_to=' . $_GET['redirect_to'];
-                    }
-
-                    if (isset($_GET['is_enroll']) && $_GET['is_enroll'] == 'true') {
-                        $argList .= '&is_enroll=' . $_GET['is_enroll'];
-                    }
-                    ?>
-                    <p class="register-link form-row">
-
-                        <a href='<?php echo esc_url(wdmUserAccountUrl('?action=eb_register' . $argList)); ?>'>
-                            <?php
-                            _e('Don\'t have an Account?', 'eb-textdomain');
-                            ?>
-                        </a>
-                    </p>
-                    <?php
-                }
-                do_action('eb_login_form_end');
                 ?>
             </form>
         </div>
