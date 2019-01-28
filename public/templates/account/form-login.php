@@ -14,7 +14,9 @@ do_action('eb_before_customer_login_form');
 <div id="user_login">
     <?php
     wdmShowNotices();
-    $action              = getArrValue($_GET, "action", false);
+    if (!$action) {
+        $action              = getArrValue($_GET, "action", false);
+    }
     $username            = getArrValue($_POST, "username", false);
     if (!$action || $action != 'eb_register') {
         ?>

@@ -43,7 +43,7 @@ class EbShortcodeUserAccount
                 edwiserBridgeInstance()->getPluginName(),
                 edwiserBridgeInstance()->getVersion()
             );
-            $template_loader->wpGetTemplate('account/form-login.php');
+            $template_loader->wpGetTemplate('account/form-login.php', array('action' => 'eb_register'));
         } else {
             self::userAccount($atts);
         }
