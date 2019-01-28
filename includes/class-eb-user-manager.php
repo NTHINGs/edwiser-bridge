@@ -379,6 +379,10 @@ class EBUserManager
             do_action('eb_linked_to_existing_wordpress_user', $args);
         }
 
+        //update firstname, lastname
+        update_user_meta($user_id, 'first_name', $firstname);
+        update_user_meta($user_id, 'last_name', $lastname);
+
         return $user_id;
     }
 
