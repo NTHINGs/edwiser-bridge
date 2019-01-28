@@ -298,7 +298,9 @@ class EBUserManager
             'user_login' => $username,
             'user_pass' => $password,
             'user_email' => $email,
-            'role' => 'subscriber',
+            'first_name' => $firstname,
+            'last_name' => $lastname,
+            'role' => 'student',
                 )
         );
 
@@ -314,10 +316,6 @@ class EBUserManager
                     )
             );
         }
-
-        //update firstname, lastname
-        update_user_meta($user_id, 'first_name', $firstname);
-        update_user_meta($user_id, 'last_name', $lastname);
 
         // check if a user exists on moodle with same email
         $moodle_user = $this->getMoodleUser($wp_user_data['user_email']);
