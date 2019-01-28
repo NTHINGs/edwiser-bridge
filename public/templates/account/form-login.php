@@ -100,6 +100,7 @@ do_action('eb_before_customer_login_form');
         $fname = getArrValue($_POST, 'firstname', "");
         $lname = getArrValue($_POST, 'lasttname', "");
         $email = getArrValue($_POST, 'email', "");
+        $password = getArrValue($_POST, 'password', "");
         ?>
 
         <h2>
@@ -139,6 +140,16 @@ do_action('eb_before_customer_login_form');
                         <span class="required">*</span>
                     </label>
                     <input type="email" class="input-text" name="email" id="reg_email" value="<?php echo esc_attr($email); ?>" required/>
+                </p>
+                
+                <p class="form-row form-row-wide">
+                    <label for="reg_password">
+                        <?php
+                        _e('Password', 'eb-textdomain');
+                        ?>
+                        <span class="required">*</span>
+                    </label>
+                    <input type="password" class="input-text" name="password" id="reg_password" value="<?php echo esc_attr($password); ?>" required/>
                 </p>
 
                 <?php

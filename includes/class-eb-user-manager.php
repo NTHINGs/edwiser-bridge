@@ -246,7 +246,7 @@ class EBUserManager
      *
      * @return int|WP_Error on failure, Int (user ID) on success
      */
-    public function createWordpressUser($email, $firstname, $lastname)
+    public function createWordpressUser($email, $firstname, $lastname, $password)
     {
 
         // Check the e-mail address
@@ -280,9 +280,6 @@ class EBUserManager
             $username = $o_username.$append;
             ++$append;
         }
-
-        // Handle password creation
-        $password = wp_generate_password();
         //$password_generated = true;
         // WP Validation
         $validation_errors = new \WP_Error();
