@@ -211,6 +211,10 @@ do_action('eb_before_customer_login_form');
                     </a>
                 </p>
 
+                <p class="login_link">
+                    <?php echo do_shortcode('[nextend_social_login]'); ?>
+                </p>
+
                 <?php
                 do_action('eb_register_form_end');
                 ?>
