@@ -271,58 +271,32 @@ class EBPaymentManager
 
                 $paypal_button = '';
                 if (!empty($paypal_email)) {
-                    ?>
-                    <button id="pagar" type="button" class="btn btn-default" data-toggle="modal" data-target="#comprar">
-                        Comprar Curso
-                    </button>
-                    <div class="modal fade" id="comprar" tabindex="-1" role="dialog" aria-labelledby="comprarLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="comprarLabel">Comprar Curso</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h4>Pagar con Tarjeta</h4>
-                                    <?php
-                                    $paypal_button = wptexturize(
-                                    do_shortcode(
-                                        "[paypal type='paynow'
-                                        amount='{$course_price}'
-                                        sandbox='{$paypal_sandbox}'
-                                        email='{$paypal_email}'
-                                        itemno='{$course->ID}'
-                                        name='{$course->post_title}'
-                                        noshipping='1' nonote='1'
-                                        qty='1' currencycode='{$paypal_currency}'
-                                        rm='2' notifyurl='{$paypal_notifyurl}'
-                                        returnurl='{$paypal_returnurl}'
-                                        scriptcode='scriptcode' imagewidth='100px'
-                                        pagestyle='paypal' lc='{$paypal_country}'
-                                        cbt='IR A PAYPAL' custom='".$user_id."']"
-                                        )
-                                    );
-                                    $payment_params = array('price' => $course_price,
-                                        'post' => $course,);
+                    $paypal_button = wptexturize(
+                        do_shortcode(
+                            "[paypal type='paynow'
+                            amount='{$course_price}'
+                            sandbox='{$paypal_sandbox}'
+                            email='{$paypal_email}'
+                            itemno='{$course->ID}'
+                            name='{$course->post_title}'
+                            noshipping='1' nonote='1'
+                            qty='1' currencycode='{$paypal_currency}'
+                            rm='2' notifyurl='{$paypal_notifyurl}'
+                            returnurl='{$paypal_returnurl}'
+                            scriptcode='scriptcode' imagewidth='100px'
+                            pagestyle='paypal' lc='{$paypal_country}'
+                            cbt='".__('Complete Your Purchase', 'eb-textdomain').
+                                    "' custom='".$user_id."']"
+                        )
+                    );
+                    $payment_params = array('price' => $course_price,
+                        'post' => $course,);
 
-                                    $payment_buttons = apply_filters('eb_course_payment_button', $paypal_button, $payment_params);
+                    $payment_buttons = apply_filters('eb_course_payment_button', $paypal_button, $payment_params);
 
-                                    if (!empty($payment_buttons)) {
-                                        return '<div class="eb_join_button">'.$payment_buttons.'</div>';
-                                    }
-                                    ?>
-                                    <h4>Depósito En Cuenta Bancaria</h4>
-                                    <p>En construcción</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
+                    if (!empty($payment_buttons)) {
+                        return '<div class="eb_join_button">'.$payment_buttons.'</div>';
+                    }
                 } else {
                     $not_purchasable = apply_filters(
                         'eb_course_not_purchasable_notice',
