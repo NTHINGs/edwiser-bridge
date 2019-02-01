@@ -129,14 +129,18 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
                         <?php
                         echo ob_get_clean();
                     }
-                    echo EBPaymentManager::takeCourseButton($post->ID);
+                    if ($course_price_type == 'free') {
+                        echo EBPaymentManager::takeCourseButton($post->ID);
+                    } else if ($course_price_type == 'paid') {
+                        echo pagar_modal($post->ID, $course_price_formatted);
+                    }
                 } else {
                     echo EBPaymentManager::accessCourseButton($post->ID);
                 }
 
                 if (count($categories)) {
                     ?>
-                    <div  class="eb-cat-wrapper">
+                    <div class="eb-cat-wrapper">
                         <span><strong><?php _e('Categories: ', 'eb-textdomain');
                     ?></strong><?php echo implode(', ', $categories);
                     ?></span>
@@ -144,7 +148,7 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
                     <?php
                 }
                 ?>
-                <div  class="eb-validity-wrapper">
+                <div class="eb-validity-wrapper">
                     <?php echo $expiryDateTime;
                 ?>
                 </div>
@@ -167,7 +171,7 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
             the_content();
 
             if (!$has_access || !is_user_logged_in()) {
-                echo EBPaymentManager::takeCourseButton($post->ID);
+                echo pagar_modal($post->ID, $course_price_formatted);
             } else {
                 echo EBPaymentManager::accessCourseButton($post->ID);
             }
@@ -175,3 +179,42 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
         ?>
     </div>
 </article><!-- #post -->
+
+<?php
+function pagar_modal($postID, $course_price_formatted) {
+    ob_start();
+    ?>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#comprar">
+            Comprar Curso
+        </button>
+        <div class="modal fade" id="comprar" tabindex="-1" role="dialog" aria-labelledby="comprarLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="comprarLabel">Comprar Curso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Pagar con Tarjeta</h4>
+                        <?php
+                            echo EBPaymentManager::takeCourseButton($postID);
+                        ?>
+                        <h4 class="mt-5">Pagar con Depósito Bancario</h4>
+                        <p>Pagar la cantidad de: <?php echo $course_price_formatted;?></p>
+                        <p>Número de Cuenta: 56618035489</p>
+                        <p>Banco: Santander</p>
+                        <p>A nombre de: Cuitlahuac Hernán Valenzuela Corral</p>
+                        <p>Mandar foto del ticket del deposito al siguiente correo: <a href="mailto:"></a></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    echo ob_get_clean();
+}
+?>
