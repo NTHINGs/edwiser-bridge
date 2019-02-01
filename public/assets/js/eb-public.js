@@ -215,6 +215,9 @@
             var btn = document.getElementById('eb_course_payment_button');
             if (btn == null) {
                 btn = document.getElementById('wdm-btn');
+                if (btn == null) {
+                    btn = document.getElementById('pagar');
+                }
                 if (btn.text != eb_public_js_object.access_course) {
                     btn.click();
                 } else {
