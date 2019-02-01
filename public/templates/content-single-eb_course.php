@@ -103,15 +103,6 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
         }
         ?>          
     </h1>
-    <?php
-    if (!is_user_logged_in()) {
-        ?>
-        <div class="w-100 pb-3">
-            Crea tu cuenta para tomar el curso aqui: <a href="https://institutoqi.com/cuenta-usuario/?action=eb_register&redirect_to=<?php echo home_url( $wp->request );?>&is_enroll=true" class="btn btn-lg btn-success">Crear Cuenta</a>
-        </div>
-        <?php
-    }
-    ?>
     <div>
         <div class="eb-course-img-wrapper">
             <?php

@@ -271,6 +271,7 @@ class EBPaymentManager
 
                 $paypal_button = '';
                 if (!empty($paypal_email)) {
+                    echo 'hey';
                     $paypal_button = wptexturize(
                         do_shortcode(
                             "[paypal type='paynow'
