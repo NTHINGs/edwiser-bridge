@@ -103,6 +103,17 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
         ?>          
     </h1>
     <div>
+        <?php
+        if (!is_user_logged_in()) {
+            ?>
+            <div class="w-100">
+                <?php
+                do_shortcode('[eb_user_account]');
+                ?>
+            </div>
+            <?php
+        }
+        ?>
         <div class="eb-course-img-wrapper">
             <?php
             if (has_post_thumbnail()) {
