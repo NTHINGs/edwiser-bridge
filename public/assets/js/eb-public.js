@@ -65,7 +65,7 @@
         });
     }
 
-    $(window).load(function () {
+    $(window).on('load', function () {
 
         /* Change required fields error messages for login / register page */
         var intputElements = document.getElementsByTagName("INPUT");
