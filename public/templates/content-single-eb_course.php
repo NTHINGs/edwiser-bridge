@@ -102,18 +102,18 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
         }
         ?>          
     </h1>
-    <div>
-        <?php
-        if (!is_user_logged_in()) {
-            ?>
-            <div class="w-100" style="height: 500px;">
-                <?php
-                do_shortcode('[eb_user_account]');
-                ?>
-            </div>
-            <?php
-        }
+    <?php
+    if (!is_user_logged_in()) {
         ?>
+        <div class="w-100" style="height: 500px;">
+            <?php
+            do_shortcode('[eb_user_account]');
+            ?>
+        </div>
+        <?php
+    }
+    ?>
+    <div>
         <div class="eb-course-img-wrapper">
             <?php
             if (has_post_thumbnail()) {
