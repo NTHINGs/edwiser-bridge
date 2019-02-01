@@ -16,6 +16,7 @@ if (!defined('ABSPATH')) {
 
 //Variables
 global $post;
+global $wp;
 $post_id = $post->ID;
 
 // get currency
@@ -88,18 +89,6 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
 }
 ?>
 
-<?php
-    if (!is_user_logged_in()) {
-        ?>
-        <div class="w-100" style="height: 500px;">
-            <?php
-            do_shortcode('[eb_user_account]');
-            ?>
-        </div>
-        <?php
-    }
-    ?>
-
 <article id="course-<?php the_ID(); ?>" class="type-post hentry single-course" >
     <h1 class="entry-title">
         <?php
@@ -114,6 +103,15 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
         }
         ?>          
     </h1>
+    <?php
+    if (!is_user_logged_in()) {
+        ?>
+        <div class="w-100">
+            Crea tu cuenta para tomar el curso aqui: <a href="https://institutoqi.com/cuenta-usuario/?action=eb_register&redirect_to=<?php echo home_url( $wp->request );?>&is_enroll=true"></a>
+        </div>
+        <?php
+    }
+    ?>
     <div>
         <div class="eb-course-img-wrapper">
             <?php
