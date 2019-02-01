@@ -106,7 +106,7 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
         <?php
         if (!is_user_logged_in()) {
             ?>
-            <div class="w-100">
+            <div class="w-100" style="height: 500px;">
                 <?php
                 do_shortcode('[eb_user_account]');
                 ?>
