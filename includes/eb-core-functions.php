@@ -149,7 +149,7 @@ function wdmUserAccountUrl($query_str = '')
     }
 
     //Extract query string into local $_GET array.
-    $get             = array();
+    $get             = array('action' => 'eb_register');
     parse_str(parse_url($query_str, PHP_URL_QUERY), $get);
     $usr_ac_page_url = add_query_arg($get, $usr_ac_page_url);
 
