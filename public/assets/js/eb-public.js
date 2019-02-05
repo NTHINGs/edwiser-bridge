@@ -212,9 +212,9 @@
             $.blockUI({
                 message: eb_public_js_object.msg_processing
             });
-            var btn = document.getElementById('eb_course_payment_button');
+            var btn = document.getElementById('pagar');
             if (btn == null) {
-                btn = document.getElementById('pagar');
+                btn = document.getElementById('eb_course_payment_button');
                 if (btn == null) {
                     btn = document.getElementById('wdm-btn');
                 }
