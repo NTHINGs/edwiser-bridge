@@ -144,6 +144,8 @@ function wdmUserAccountUrl($query_str = '')
 
     $usr_ac_page_url = get_permalink($usr_ac_page_id);
 
+    print($usr_ac_page_url);
+
     if (!$usr_ac_page_url) {
         $usr_ac_page_url = site_url('/user-account');
     }
