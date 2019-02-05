@@ -144,8 +144,6 @@ function wdmUserAccountUrl($query_str = '')
 
     $usr_ac_page_url = get_permalink($usr_ac_page_id);
 
-    print($usr_ac_page_url);
-
     if (!$usr_ac_page_url) {
         $usr_ac_page_url = site_url('/user-account');
     }
@@ -153,8 +151,8 @@ function wdmUserAccountUrl($query_str = '')
     //Extract query string into local $_GET array.
     $get             = array();
     parse_str(parse_url($query_str, PHP_URL_QUERY), $get);
-    // array_push($get, 'action' => 'eb_register');
     $usr_ac_page_url = add_query_arg($get, $usr_ac_page_url);
+    $usr_ac_page_url = add_query_arg(array('action' => 'eb_register'), $usr_ac_page_url);
 
     return $usr_ac_page_url;
 }
