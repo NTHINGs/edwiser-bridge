@@ -212,14 +212,11 @@
             $.blockUI({
                 message: eb_public_js_object.msg_processing
             });
-            var btn = document.getElementById('pagar');
+            var btn = document.getElementById('eb_course_payment_button');
             if (btn == null) {
-                btn = document.getElementById('eb_course_payment_button');
-                if (btn == null) {
-                    btn = document.getElementById('wdm-btn');
-                }
+                btn = document.getElementById('wdm-btn');
                 if (btn.text != eb_public_js_object.access_course) {
-                    btn.click();
+                    // btn.click();
                 } else {
                     $.unblockUI();
                 }
