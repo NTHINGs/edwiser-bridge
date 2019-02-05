@@ -125,6 +125,7 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
                         ?>">
                                     <?php echo '<h3>'.$course_price_formatted.'</h3>';
                         ?>
+                        <a href="/tutorial/" target="_blank">¿Cómo Compro Un Curso?</a>
                         </div>
                         <?php
                         echo ob_get_clean();
