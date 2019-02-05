@@ -208,6 +208,11 @@
                 }
             }
         };
+
+        var btn = document.getElementById('wdm-btn');
+        if (btn) {
+            btn.text('IR AL CURSO');
+        }
         if (getUrlParameter("auto_enroll") === "true") {
             // $.blockUI({
             //     message: eb_public_js_object.msg_processing
