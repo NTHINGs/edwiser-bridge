@@ -184,7 +184,7 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
 function pagar_modal($postID, $course_price_formatted) {
     ob_start();
     ?>
-        <button type="button" class="btn btn-lg btn-default" data-toggle="modal" data-target="#comprar">
+        <button type="button" id="pagar" class="btn btn-lg btn-default" data-toggle="modal" data-target="#comprar">
             Comprar Curso
         </button>
         <div class="modal fade" id="comprar" tabindex="-1" role="dialog" aria-labelledby="comprarLabel" aria-hidden="true">
@@ -197,16 +197,36 @@ function pagar_modal($postID, $course_price_formatted) {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <h4>Pagar con Tarjeta</h4>
                         <?php
-                            echo EBPaymentManager::takeCourseButton($postID);
+                            if (is_user_logged_in()) {
                         ?>
-                        <h4 class="mt-5">Pagar con Depósito Bancario</h4>
-                        <p>Pagar la cantidad de: <?php echo $course_price_formatted;?></p>
-                        <p>Número de Cuenta: 56618035489</p>
-                        <p>Banco: Santander</p>
-                        <p>A nombre de: Cuitlahuac Hernán Valenzuela Corral</p>
-                        <p>Mandar foto del ticket del deposito al siguiente correo: <a href="mailto:cui5@hotmail.com">cui5@hotmail.com</a></p>
+                                <h4>Pagar con Tarjeta</h4>
+                                <?php
+                                    echo EBPaymentManager::takeCourseButton($postID);
+                                ?>
+                                <h4 class="mt-5">Pagar con Depósito Bancario</h4>
+                                <p>Pagar la cantidad de: <?php echo $course_price_formatted;?></p>
+                                <p>Número de Cuenta: 56618035489</p>
+                                <p>Banco: Santander</p>
+                                <p>A nombre de: Cuitlahuac Hernán Valenzuela Corral</p>
+                                <p>Mandar foto del ticket del deposito al siguiente correo: <a href="mailto:cui5@hotmail.com">cui5@hotmail.com</a></p>
+                        <?php
+                            } else {
+                                ?>
+                                <h4>Necesitas tener sesión iniciada para inscribirte al curso</h4>
+                                <?php
+                                $login_url = wdmUserAccountUrl('?redirect_to='.get_permalink($course_id)."&is_enroll=true");
+                                $register_url = wdmUserAccountUrl('?redirect_to='.get_permalink($course_id)."&is_enroll=true&action=eb_register");
+                                ?>
+                                <a href="<?php echo $register_url;?>" class="btn btn-lg btn-default">
+                                    ¿No Tienes Cuenta?
+                                </a>
+                                <a href="<?php echo $login_url;?>" class="btn btn-lg btn-default">
+                                    ¿Ya Tienes Cuenta?
+                                </a>
+                                <?php
+                            }
+                        ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
