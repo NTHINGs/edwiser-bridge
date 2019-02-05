@@ -162,7 +162,7 @@ class EbPublic
                 'msg_val_mail' => __("The field 'Email' cannot be left blank", 'eb-textdomain'),
                 'msg_ordr_pro_err' => __('Problems in processing your order, Please try later.', 'eb-textdomain'),
                 'msg_processing' => __('Processing...', 'eb-textdomain'),
-                'access_course' => __('Access Course', 'eb-textdomain'),
+                'access_course' => 'IR AL CURSO',
             )
         );
 
