@@ -152,7 +152,11 @@ function wdmUserAccountUrl($query_str = '')
     $get             = array();
     parse_str(parse_url($query_str, PHP_URL_QUERY), $get);
     $usr_ac_page_url = add_query_arg($get, $usr_ac_page_url);
-    $usr_ac_page_url = add_query_arg(array('action' => 'eb_register'), $usr_ac_page_url);
+    if (strpos($query_str, 'eb_register') !== false) {
+        $usr_ac_page_url = remove_query_arg('action', $usr_ac_page_url);
+    } else {
+        $usr_ac_page_url = add_query_arg(array('action' => 'eb_register'), $usr_ac_page_url);
+    }
 
     return $usr_ac_page_url;
 }

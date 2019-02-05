@@ -223,4 +223,3 @@ do_action('eb_before_customer_login_form');
 </div>
 <?php
 do_action('eb_after_customer_login_form');
-remove_query_arg('action');
