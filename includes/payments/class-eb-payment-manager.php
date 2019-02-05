@@ -97,8 +97,7 @@ class EBPaymentManager
                 $access_course_url = 'http://'.$access_course_url;
             }
             $access_button = '<div class="eb_join_button">
-            <a class="wdm-btn" href="'.$access_course_url.'" id="wdm-btn">'.
-                    __('Access Course', 'eb-textdomain').'</a></div>';
+            <a class="wdm-btn" href="'.$access_course_url.'" id="wdm-btn">IR AL CURSO</a></div>';
         }
         $access_params = array('access_course_url' => $access_course_url,
             'post' => $course,);
