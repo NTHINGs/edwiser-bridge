@@ -184,7 +184,7 @@ if (isset($course_options['course_expirey']) && $course_options['course_expirey'
 function pagar_modal($postID, $course_price_formatted) {
     ob_start();
     ?>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#comprar">
+        <button type="button" class="btn btn-lg btn-default" data-toggle="modal" data-target="#comprar">
             Comprar Curso
         </button>
         <div class="modal fade" id="comprar" tabindex="-1" role="dialog" aria-labelledby="comprarLabel" aria-hidden="true">
@@ -206,7 +206,7 @@ function pagar_modal($postID, $course_price_formatted) {
                         <p>Número de Cuenta: 56618035489</p>
                         <p>Banco: Santander</p>
                         <p>A nombre de: Cuitlahuac Hernán Valenzuela Corral</p>
-                        <p>Mandar foto del ticket del deposito al siguiente correo: <a href="mailto:"></a></p>
+                        <p>Mandar foto del ticket del deposito al siguiente correo: <a href="mailto:cui5@hotmail.com">cui5@hotmail.com</a></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
