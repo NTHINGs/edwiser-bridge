@@ -209,8 +209,8 @@
             }
         };
 
-        var btn = document.getElementById('wdm-btn');
-        if (btn) {
+        var btn = $('#wdm-btn');
+        if (btn && btn.text == eb_public_js_object.access_course) {
             btn.text('IR AL CURSO');
         }
         if (getUrlParameter("auto_enroll") === "true") {
