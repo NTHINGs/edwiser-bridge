@@ -115,6 +115,7 @@ class EbFrontendFormHandler
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
             $password = $_POST['password'];
+            $username = $_POST['username'];
 
             /* get object of user manager class */
             $user_manager = new EBUserManager(
@@ -141,7 +142,7 @@ class EbFrontendFormHandler
                     throw new \Exception(__('Anti-spam field was filled in.', 'eb-textdomain'));
                 }
 
-                $new_user = $user_manager->createWordpressUser(sanitize_email($email), $firstname, $lastname, $password);
+                $new_user = $user_manager->createWordpressUser($username, sanitize_email($email), $firstname, $lastname, $password);
 
                 if (is_wp_error($new_user)) {
                     throw new \Exception($new_user->get_error_message());

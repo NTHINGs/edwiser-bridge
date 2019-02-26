@@ -102,6 +102,7 @@ do_action('eb_before_customer_login_form');
         $lname = getArrValue($_POST, 'lasttname', "");
         $email = getArrValue($_POST, 'email', "");
         $password = getArrValue($_POST, 'password', "");
+        $username = getArrValue($_POST, 'username', "");
         ?>
 
         <h2>
@@ -114,6 +115,15 @@ do_action('eb_before_customer_login_form');
                 <?php
                 do_action('eb_register_form_start');
                 ?>
+                <p class="form-row form-row-wide">
+                    <label for="reg_username">
+                        <?php
+                        _e('Username', 'eb-textdomain');
+                        ?>
+                        <span class="required">*</span>
+                    </label>
+                    <input type="text" class="input-text" name="username" id="reg_username" value="<?php echo esc_attr($username); ?>" required/>
+                </p>
                 <p class="form-row form-row-wide">
                     <label for="reg_firstname">
                         <?php

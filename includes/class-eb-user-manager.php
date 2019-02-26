@@ -246,7 +246,7 @@ class EBUserManager
      *
      * @return int|WP_Error on failure, Int (user ID) on success
      */
-    public function createWordpressUser($email, $firstname, $lastname, $password)
+    public function createWordpressUser($username, $email, $firstname, $lastname, $password)
     {
 
         // Check the e-mail address
@@ -270,15 +270,22 @@ class EBUserManager
             $lastname = $_POST['lastname'];
         }
 
-        $username = sanitize_user(current(explode('@', $email)), true);
+        // $username = sanitize_user(current(explode('@', $email)), true);
 
         // Ensure username is unique
-        $append = 1;
-        $o_username = $username;
+        // $append = 1;
+        // $o_username = $username;
 
-        while (username_exists($username)) {
-            $username = $o_username.$append;
-            ++$append;
+        // while (username_exists($username)) {
+        //     $username = $o_username.$append;
+        //     ++$append;
+        // }
+        if (username_exists($username)) {
+            return new \WP_Error(
+                'registration-error',
+                __('An account is already registered with your username. Please login.', 'eb-textdomain'),
+                'eb_username_exists'
+            );
         }
         //$password_generated = true;
         // WP Validation
