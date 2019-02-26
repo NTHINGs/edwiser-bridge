@@ -215,8 +215,7 @@ class EBPaymentManager
                     $closed_button_url = 'http://'.$closed_button_url;
                 }
                 $closed_button = '<div class="eb_join_button">
-                <a class="wdm-btn" href="'.$closed_button_url.'" id="wdm-btn">'.
-                        __('Take this Course', 'eb-textdomain').'</a></div>';
+                <a class="wdm-btn" href="'.$closed_button_url.'" id="wdm-btn">Tomar Curso</a></div>';
             }
             $closed_params = array('closed_button_url' => $closed_button_url, 'post' => $course);
             $closed_button = apply_filters('eb_course_closed_button', $closed_button, $closed_params);
@@ -225,8 +224,7 @@ class EBPaymentManager
         } elseif (!is_user_logged_in()) {
             $login_url = wdmUserAccountUrl('?redirect_to='.get_permalink($course_id)."&is_enroll=true");
             $login_button = '<div class="eb_join_button">
-            <a class="wdm-btn" href="'.$login_url.'" id="wdm-btn">'.
-                    __('Take this Course', 'eb-textdomain').'</a></div>';
+            <a class="wdm-btn" href="'.$login_url.'" id="wdm-btn">Tomar Curso</a></div>';
 
             return apply_filters('eb_course_login_button', $login_button, $login_url);
         }
@@ -250,8 +248,7 @@ class EBPaymentManager
                         $closed_button_url = 'http://'.$closed_button_url;
                     }
                     $closed_button = '<div class="eb_join_button">
-                    <a class="wdm-btn" href="'.$closed_button_url.'" id="wdm-btn">'.
-                            __('Take this Course', 'eb-textdomain').'</a></div>';
+                    <a class="wdm-btn" href="'.$closed_button_url.'" id="wdm-btn">Tomar Curso</a></div>';
                 }
                 $closed_params = array('closed_button_url' => $closed_button_url, 'post' => $course);
                 $closed_button = apply_filters('eb_course_closed_button', $closed_button, $closed_params);
@@ -261,7 +258,7 @@ class EBPaymentManager
                 $free_button = '<div class="eb_join_button"><form method="post">
                                 <input type="hidden" value="'.$course->ID.'" name="course_id">
                                 <input type="submit"
-                                value="'.__('Take this Course', 'eb-textdomain').'"
+                                value="Tomar Curso"
                                 name="course_join" class="wdm-btn" id="wdm-btn">
                             </form></div>';
                 return apply_filters('eb_course_free_button', $free_button, $course->ID);
